@@ -1,4 +1,4 @@
-package com.rebecacruz.cursomc.domain;
+package com.rebecacruz.cursomc.domain.enums;
 
 public enum TipoCliente {
 	
