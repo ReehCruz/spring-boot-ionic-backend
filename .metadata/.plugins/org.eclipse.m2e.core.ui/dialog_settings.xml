@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\ws\cursomc"/>
 			<item value="C:\desenvolvimento\java\local\ws\cursomc"/>
 		</list>
 		<list key="projectNameTemplate">

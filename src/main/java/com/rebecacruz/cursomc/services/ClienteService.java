@@ -1,6 +1,7 @@
 package com.rebecacruz.cursomc.services;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +41,22 @@ public class ClienteService {
 	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
+		
+		verificaDocumentoExistente(obj);
+		
 		obj = repo.save(obj);
 		enderecoRepository.saveAll(obj.getEnderecos());
 		return obj;
+	}
+
+	private void verificaDocumentoExistente(Cliente obj) {
+		if (Objects.isNull(obj.getCpfOucnpj())) {
+			List<Cliente> clientes = this.repo.findByCpfOucnpj(obj.getCpfOucnpj());
+			
+			if(clientes.size() > 0) {
+				throw new DataIntegrityException("ja existe um cpf/ cnpj cadastrado na nossa base");
+			}
+		}
 	}
 	
 	public Cliente update(Cliente obj) {
